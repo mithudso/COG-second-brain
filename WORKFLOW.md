@@ -184,3 +184,8 @@ Run output lives under `04-projects/harness/`, which is created on the first har
 ## No install step
 
 The harness has no installer. `.claude/lib/*.sh` ship executable, run directories are created on demand, and COG ships no hooks. If a skill body ever tells you to run `install-harness.sh`, that reference is stale; report it.
+
+
+## Local maintenance reference
+
+The harness remains opt-in. Ordinary framework maintenance uses the [development guide](docs/DEVELOPMENT.md) and [offline validation runbook](docs/runbooks/validation.md). Helper diagnostics and append-only logs are described in [logging](docs/logging.md); known standards gaps are in the [bootstrap audit](docs/repo-bootstrap-audit-2026-11-12.md).

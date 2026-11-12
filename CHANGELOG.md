@@ -2,6 +2,13 @@
 
 All notable changes to COG (Cognition + Obsidian + Git) will be documented in this file.
 
+## [3.13.1] - 2026-11-12
+
+- Repair complete upstream update control flow, atomic per-file replacement, executable modes, checkout and symlink boundaries, remote identity, and validation failures.
+- Preserve literal checkpoint records and risk-gate detection. Correct slop and voice scanners for fenced exhibits, complete edits, phrase boundaries, report exclusion, and traversal failures.
+- Stage and serialize plugin mirror rebuilds; reject incomplete or duplicate package manifests. Align all five version surfaces and refresh Cursor's 35 skills and 10 agents.
+- Add isolated regression tests, CI and offline maintenance documentation with path-only retrieval maps. Vault/profile/template content remains unchanged.
+
 ## [3.13.0] - 2026-09-14
 
 ### Added

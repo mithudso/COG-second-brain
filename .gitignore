@@ -57,3 +57,14 @@ Thumbs.db
 .github/SUBMISSION-CHECKLIST.md
 .github/SUBMISSION-TEMPLATES.md
 .github/MARKETPLACE.md
+
+# Updater temporary files and private backups
+*.backup-*
+.cog-update.*
+.claude/.build-agent-plugin.lock/
+.skills-stage.*/
+__pycache__/
+*.py[cod]
+
+# Single-writer upstream maintenance lock
+.cog-update.lock/

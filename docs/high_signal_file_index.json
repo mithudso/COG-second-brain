@@ -1,0 +1,1621 @@
+{
+  "format": 1,
+  "scope": "Git tracked/staged paths only; no content or embeddings",
+  "files": [
+    {
+      "path": ".agents/agents/brief-people-updater.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/agents/fix-agent.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/agents/harvest-curator.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/agents/integration-verifier.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/agents/task-verifier.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/agents/worker-data-collector.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/agents/worker-executor.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/agents/worker-file-ops.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/agents/worker-publisher.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/agents/worker-researcher.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/rules/cog.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/auto-research/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/braindump/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/closed-loop/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/comprehensive-analysis/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/content-factory/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/create-user-story/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/daily-brief/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/daily-journal/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/data-forms/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/editorial-illustrations/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/export-open-issues/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/generate-prd/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/generate-release-notes/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/harvest/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/knowledge-consolidation/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/loop-engineering/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/meeting-transcript/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/memory-hygiene/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/museum-art/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/no-ai-slop/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/onboarding/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/product-ui-taste/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/publish-to-confluence/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/retro/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/review-cockpit/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/scout/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/slop-gate/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/taste-skill/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/team-brief/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/ultragoal/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/update-cog/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/update-knowledge-base/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/url-dump/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/voice-baseline/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".agents/skills/weekly-checkin/SKILL.md",
+      "component": ".agents",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude-plugin/plugin.json",
+      "component": ".claude-plugin",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/IMPLEMENTATION-TODO.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/SKILLS-MIGRATION-PLAN.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/agents/brief-people-updater.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/agents/fix-agent.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/agents/harvest-curator.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/agents/integration-verifier.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/agents/task-verifier.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/agents/worker-data-collector.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/agents/worker-executor.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/agents/worker-file-ops.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/agents/worker-publisher.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/agents/worker-researcher.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/lib/checkpoint.sh",
+      "component": ".claude",
+      "kind": "source"
+    },
+    {
+      "path": ".claude/lib/lane-classify.sh",
+      "component": ".claude",
+      "kind": "source"
+    },
+    {
+      "path": ".claude/roles/_template.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/roles/designer.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/roles/engineer.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/roles/engineering-lead.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/roles/founder.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/roles/marketer.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/roles/product-manager.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/auto-research/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/braindump/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/closed-loop/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/closed-loop/references/report-template.html",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/closed-loop/references/spec-template.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/comprehensive-analysis/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/content-factory/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/create-user-story/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/daily-brief/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/daily-journal/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/data-forms/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/data-forms/references/forms.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/editorial-illustrations/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/editorial-illustrations/assets/gallery.html",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/editorial-illustrations/references/design-system.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/editorial-illustrations/references/elements.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/editorial-illustrations/references/worked-examples.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/export-open-issues/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/generate-prd/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/generate-release-notes/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/harvest/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/knowledge-consolidation/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/knowledge-consolidation/references/templates.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/loop-engineering/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/meeting-transcript/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/memory-hygiene/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/museum-art/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/museum-art/references/_synthesis.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/museum-art/references/artic.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/museum-art/references/cleveland.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/museum-art/references/getty.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/museum-art/references/met.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/museum-art/references/nga.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/museum-art/references/rijksmuseum.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/museum-art/references/smithsonian.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/museum-art/references/smk.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/no-ai-slop/LICENSE",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/no-ai-slop/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/no-ai-slop/SOURCE.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/no-ai-slop/eval.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/onboarding/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/onboarding/references/profile-templates.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/onboarding/references/welcome-guide.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/product-ui-taste/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/product-ui-taste/references/block-skeletons.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/product-ui-taste/references/canonical-sources.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/product-ui-taste/references/install-commands.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/publish-to-confluence/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/retro/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/retro/references/retro-template.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/review-cockpit/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/review-cockpit/references/session-review-template.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/scout/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/slop-gate/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/slop-gate/scripts/scan.py",
+      "component": ".claude",
+      "kind": "source"
+    },
+    {
+      "path": ".claude/skills/taste-skill/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/taste-skill/references/canonical-sources.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/taste-skill/references/design-systems-install.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/taste-skill/references/liquid-glass.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/taste-skill/references/motion-skeletons.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/taste-skill/references/pattern-vocabulary.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/team-brief/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/team-brief/references/agent-prompts.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/team-brief/references/brief-frontmatter.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/team-brief/references/publish-templates.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/ultragoal/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/update-cog/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/update-knowledge-base/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/url-dump/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/voice-baseline/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".claude/skills/voice-baseline/scripts/census.py",
+      "component": ".claude",
+      "kind": "source"
+    },
+    {
+      "path": ".claude/skills/weekly-checkin/SKILL.md",
+      "component": ".claude",
+      "kind": "reference"
+    },
+    {
+      "path": ".codex/agents/brief-people-updater.toml",
+      "component": ".codex",
+      "kind": "reference"
+    },
+    {
+      "path": ".codex/agents/fix-agent.toml",
+      "component": ".codex",
+      "kind": "reference"
+    },
+    {
+      "path": ".codex/agents/harvest-curator.toml",
+      "component": ".codex",
+      "kind": "reference"
+    },
+    {
+      "path": ".codex/agents/integration-verifier.toml",
+      "component": ".codex",
+      "kind": "reference"
+    },
+    {
+      "path": ".codex/agents/task-verifier.toml",
+      "component": ".codex",
+      "kind": "reference"
+    },
+    {
+      "path": ".codex/agents/worker-data-collector.toml",
+      "component": ".codex",
+      "kind": "reference"
+    },
+    {
+      "path": ".codex/agents/worker-executor.toml",
+      "component": ".codex",
+      "kind": "reference"
+    },
+    {
+      "path": ".codex/agents/worker-file-ops.toml",
+      "component": ".codex",
+      "kind": "reference"
+    },
+    {
+      "path": ".codex/agents/worker-publisher.toml",
+      "component": ".codex",
+      "kind": "reference"
+    },
+    {
+      "path": ".codex/agents/worker-researcher.toml",
+      "component": ".codex",
+      "kind": "reference"
+    },
+    {
+      "path": ".cursor-plugin/plugin.json",
+      "component": ".cursor-plugin",
+      "kind": "reference"
+    },
+    {
+      "path": ".cursorrules",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": ".editorconfig",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": ".gemini/commands/braindump.toml",
+      "component": ".gemini",
+      "kind": "reference"
+    },
+    {
+      "path": ".gemini/commands/daily-brief.toml",
+      "component": ".gemini",
+      "kind": "reference"
+    },
+    {
+      "path": ".gemini/commands/knowledge-consolidation.toml",
+      "component": ".gemini",
+      "kind": "reference"
+    },
+    {
+      "path": ".gemini/commands/onboarding.toml",
+      "component": ".gemini",
+      "kind": "reference"
+    },
+    {
+      "path": ".gemini/commands/update-cog.toml",
+      "component": ".gemini",
+      "kind": "reference"
+    },
+    {
+      "path": ".gemini/commands/url-dump.toml",
+      "component": ".gemini",
+      "kind": "reference"
+    },
+    {
+      "path": ".gemini/commands/weekly-checkin.toml",
+      "component": ".gemini",
+      "kind": "reference"
+    },
+    {
+      "path": ".gemini/skills/braindump.md",
+      "component": ".gemini",
+      "kind": "reference"
+    },
+    {
+      "path": ".gemini/skills/daily-brief.md",
+      "component": ".gemini",
+      "kind": "reference"
+    },
+    {
+      "path": ".gemini/skills/knowledge-consolidation.md",
+      "component": ".gemini",
+      "kind": "reference"
+    },
+    {
+      "path": ".gemini/skills/onboarding.md",
+      "component": ".gemini",
+      "kind": "reference"
+    },
+    {
+      "path": ".gemini/skills/update-cog.md",
+      "component": ".gemini",
+      "kind": "reference"
+    },
+    {
+      "path": ".gemini/skills/url-dump.md",
+      "component": ".gemini",
+      "kind": "reference"
+    },
+    {
+      "path": ".gemini/skills/weekly-checkin.md",
+      "component": ".gemini",
+      "kind": "reference"
+    },
+    {
+      "path": ".gitattributes",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": ".github/CODEOWNERS",
+      "component": ".github",
+      "kind": "reference"
+    },
+    {
+      "path": ".github/FUNDING.yml",
+      "component": ".github",
+      "kind": "reference"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+      "component": ".github",
+      "kind": "reference"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature_request.md",
+      "component": ".github",
+      "kind": "reference"
+    },
+    {
+      "path": ".github/MARKETPLACE.md",
+      "component": ".github",
+      "kind": "reference"
+    },
+    {
+      "path": ".github/PR-AWESOME-CLAUDE-CODE.md",
+      "component": ".github",
+      "kind": "reference"
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "component": ".github",
+      "kind": "reference"
+    },
+    {
+      "path": ".github/SECURITY.md",
+      "component": ".github",
+      "kind": "reference"
+    },
+    {
+      "path": ".github/copilot-instructions.md",
+      "component": ".github",
+      "kind": "reference"
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "component": ".github",
+      "kind": "reference"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "component": ".github",
+      "kind": "reference"
+    },
+    {
+      "path": ".gitignore",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": ".kiro/powers/cog-braindump/POWER.md",
+      "component": ".kiro",
+      "kind": "reference"
+    },
+    {
+      "path": ".kiro/powers/cog-daily-brief/POWER.md",
+      "component": ".kiro",
+      "kind": "reference"
+    },
+    {
+      "path": ".kiro/powers/cog-knowledge-consolidation/POWER.md",
+      "component": ".kiro",
+      "kind": "reference"
+    },
+    {
+      "path": ".kiro/powers/cog-onboarding/POWER.md",
+      "component": ".kiro",
+      "kind": "reference"
+    },
+    {
+      "path": ".kiro/powers/cog-update/POWER.md",
+      "component": ".kiro",
+      "kind": "reference"
+    },
+    {
+      "path": ".kiro/powers/cog-url-dump/POWER.md",
+      "component": ".kiro",
+      "kind": "reference"
+    },
+    {
+      "path": ".kiro/powers/cog-weekly-checkin/POWER.md",
+      "component": ".kiro",
+      "kind": "reference"
+    },
+    {
+      "path": "00-inbox/.gitkeep",
+      "component": "00-inbox",
+      "kind": "reference"
+    },
+    {
+      "path": "01-daily/.gitkeep",
+      "component": "01-daily",
+      "kind": "reference"
+    },
+    {
+      "path": "01-daily/briefs/.gitkeep",
+      "component": "01-daily",
+      "kind": "reference"
+    },
+    {
+      "path": "01-daily/checkins/.gitkeep",
+      "component": "01-daily",
+      "kind": "reference"
+    },
+    {
+      "path": "01-daily/journal/.gitkeep",
+      "component": "01-daily",
+      "kind": "reference"
+    },
+    {
+      "path": "02-personal/.gitkeep",
+      "component": "02-personal",
+      "kind": "reference"
+    },
+    {
+      "path": "02-personal/braindumps/.gitkeep",
+      "component": "02-personal",
+      "kind": "reference"
+    },
+    {
+      "path": "03-professional/.gitkeep",
+      "component": "03-professional",
+      "kind": "reference"
+    },
+    {
+      "path": "03-professional/braindumps/.gitkeep",
+      "component": "03-professional",
+      "kind": "reference"
+    },
+    {
+      "path": "04-projects/.gitkeep",
+      "component": "04-projects",
+      "kind": "reference"
+    },
+    {
+      "path": "05-knowledge/.gitkeep",
+      "component": "05-knowledge",
+      "kind": "reference"
+    },
+    {
+      "path": "05-knowledge/booklets/.gitkeep",
+      "component": "05-knowledge",
+      "kind": "reference"
+    },
+    {
+      "path": "05-knowledge/consolidated/.gitkeep",
+      "component": "05-knowledge",
+      "kind": "reference"
+    },
+    {
+      "path": "05-knowledge/patterns/.gitkeep",
+      "component": "05-knowledge",
+      "kind": "reference"
+    },
+    {
+      "path": "05-knowledge/people/README.md",
+      "component": "05-knowledge",
+      "kind": "reference"
+    },
+    {
+      "path": "05-knowledge/timeline/.gitkeep",
+      "component": "05-knowledge",
+      "kind": "reference"
+    },
+    {
+      "path": "06-templates/.gitkeep",
+      "component": "06-templates",
+      "kind": "reference"
+    },
+    {
+      "path": "06-templates/people-profile-template.md",
+      "component": "06-templates",
+      "kind": "reference"
+    },
+    {
+      "path": "AGENTS.md",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "CLAUDE.md",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "COG-VERSION",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "GEMINI.md",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "LICENSE",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "README.md",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "SETUP.md",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "WORKFLOW.md",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "cog-update.sh",
+      "component": "(root)",
+      "kind": "source"
+    },
+    {
+      "path": "docs/AGENT-SUPPORT.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/COMPONENTS.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/INSTALLATION.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/MCP.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/SECURITY.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/SKILL-DISTILLATION.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/TESTING.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/archive/README.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/caching-and-optimization.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/code-deep-optimizer-2026-11-12.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/codebase-overview.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/external-calls.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/high_signal_file_index.json",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/integrations-and-assumptions.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/known-issues.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/logging.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/maintenance-coverage-2026-11-12.json",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/onboarding.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/repo-bootstrap-audit-2026-11-12.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/requirements.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/runbooks/framework-update.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/runbooks/validation.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/wiki/index.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "docs/wiki/maintenance.md",
+      "component": "docs",
+      "kind": "reference"
+    },
+    {
+      "path": "llms.txt",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "marketplace-entry.json",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "memory.md",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "plugin.json",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "prompts.md",
+      "component": "(root)",
+      "kind": "reference"
+    },
+    {
+      "path": "scripts/build-agent-plugin.sh",
+      "component": "scripts",
+      "kind": "source"
+    },
+    {
+      "path": "scripts/doc_indexes.py",
+      "component": "scripts",
+      "kind": "source"
+    },
+    {
+      "path": "scripts/validate-agent-surface.sh",
+      "component": "scripts",
+      "kind": "source"
+    },
+    {
+      "path": "skills/auto-research/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/braindump/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/closed-loop/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/closed-loop/references/report-template.html",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/closed-loop/references/spec-template.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/comprehensive-analysis/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/content-factory/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/create-user-story/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/daily-brief/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/daily-journal/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/data-forms/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/data-forms/references/forms.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/editorial-illustrations/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/editorial-illustrations/assets/gallery.html",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/editorial-illustrations/references/design-system.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/editorial-illustrations/references/elements.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/editorial-illustrations/references/worked-examples.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/export-open-issues/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/generate-prd/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/generate-release-notes/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/harvest/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/knowledge-consolidation/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/knowledge-consolidation/references/templates.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/loop-engineering/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/meeting-transcript/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/memory-hygiene/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/museum-art/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/museum-art/references/_synthesis.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/museum-art/references/artic.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/museum-art/references/cleveland.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/museum-art/references/getty.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/museum-art/references/met.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/museum-art/references/nga.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/museum-art/references/rijksmuseum.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/museum-art/references/smithsonian.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/museum-art/references/smk.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/no-ai-slop/LICENSE",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/no-ai-slop/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/no-ai-slop/SOURCE.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/no-ai-slop/eval.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/onboarding/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/onboarding/references/profile-templates.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/onboarding/references/welcome-guide.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/product-ui-taste/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/product-ui-taste/references/block-skeletons.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/product-ui-taste/references/canonical-sources.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/product-ui-taste/references/install-commands.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/publish-to-confluence/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/retro/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/retro/references/retro-template.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/review-cockpit/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/review-cockpit/references/session-review-template.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/scout/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/slop-gate/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/slop-gate/scripts/scan.py",
+      "component": "skills",
+      "kind": "source"
+    },
+    {
+      "path": "skills/taste-skill/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/taste-skill/references/canonical-sources.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/taste-skill/references/design-systems-install.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/taste-skill/references/liquid-glass.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/taste-skill/references/motion-skeletons.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/taste-skill/references/pattern-vocabulary.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/team-brief/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/team-brief/references/agent-prompts.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/team-brief/references/brief-frontmatter.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/team-brief/references/publish-templates.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/ultragoal/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/update-cog/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/update-knowledge-base/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/url-dump/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/voice-baseline/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "skills/voice-baseline/scripts/census.py",
+      "component": "skills",
+      "kind": "source"
+    },
+    {
+      "path": "skills/weekly-checkin/SKILL.md",
+      "component": "skills",
+      "kind": "reference"
+    },
+    {
+      "path": "tests/test_maintenance.py",
+      "component": "tests",
+      "kind": "source"
+    }
+  ]
+}

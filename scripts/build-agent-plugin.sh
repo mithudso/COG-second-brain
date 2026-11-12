@@ -1,27 +1,50 @@
 #!/usr/bin/env bash
-# build-agent-plugin.sh — regenerate the Agent Plugins standard surface.
-#
-# COG conforms to the Agent Plugins specification 1.0.0 (https://agent-plugins.org):
-# a root plugin.json manifest plus a root skills/ directory. The canonical skills
-# live in .claude/skills/ (that is what the distill and update flows write); this
-# script mirrors them to skills/ so any standard-conformant client can load COG
-# as a plugin. Run it after adding or editing any skill, then commit the result.
-#
-# skills/ is GENERATED — never edit it by hand. The packaging validator
-# (scripts/validate-agent-surface.sh) fails if the two trees drift.
-
+# Regenerate skills/ from canonical .claude/skills without deleting a valid
+# mirror before copying succeeds. Run one writer per checkout.
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT_DIR="$(CDPATH= cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
-
-if [[ ! -d .claude/skills ]]; then
-  echo "✗ .claude/skills not found — run from a COG checkout" >&2
+if [[ ! -d .claude/skills || -L .claude/skills ]]; then
+  printf 'Canonical .claude/skills must be a regular directory\n' >&2
   exit 1
 fi
 
-rm -rf skills
-cp -R .claude/skills skills
+LOCK_DIR="$ROOT_DIR/.claude/.build-agent-plugin.lock"
+STAGE=""
+cleanup() {
+  local build_exit=$?
+  trap - EXIT
+  if [[ -n "$STAGE" && ( -e "$STAGE/previous" || -L "$STAGE/previous" ) && ! -e skills && ! -L skills ]]; then
+    if ! mv "$STAGE/previous" skills; then
+      printf 'Mirror recovery failed; preserve and inspect %s\n' "$STAGE" >&2
+      STAGE=""
+      build_exit=1
+    fi
+  fi
+  if [[ -n "$STAGE" ]] && ! rm -rf -- "$STAGE"; then
+    printf 'Mirror staging cleanup failed; inspect %s\n' "$STAGE" >&2
+    build_exit=1
+  fi
+  if ! rm -f -- "$LOCK_DIR/pid" || ! rmdir -- "$LOCK_DIR"; then
+    printf 'Mirror lock cleanup failed; inspect %s\n' "$LOCK_DIR" >&2
+    build_exit=1
+  fi
+  exit "$build_exit"
+}
 
+if ! mkdir "$LOCK_DIR" 2>/dev/null; then
+  printf 'Another mirror build is active, or its lock needs owner review: %s\n' "$LOCK_DIR" >&2
+  exit 1
+fi
+trap cleanup EXIT
+trap 'exit 129' HUP
+trap 'exit 130' INT
+trap 'exit 143' TERM
+printf '%s\n' "$$" > "$LOCK_DIR/pid"
+STAGE=$(mktemp -d "$ROOT_DIR/.skills-stage.XXXXXX")
+cp -R .claude/skills "$STAGE/skills"
+if [[ -e skills || -L skills ]]; then mv skills "$STAGE/previous"; fi
+mv "$STAGE/skills" skills
 count=$(find skills -name SKILL.md | wc -l | tr -d ' ')
-echo "✓ Mirrored .claude/skills → skills/ ($count skills, Agent Plugins spec 1.0.0)"
+printf 'Mirrored .claude/skills → skills/ (%s skills, Agent Plugins spec 1.0.0)\n' "$count"

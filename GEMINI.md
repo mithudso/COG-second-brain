@@ -37,3 +37,8 @@ Use `/onboarding`, `/braindump`, `/daily-brief`, `/weekly-checkin`, `/knowledge-
 - Respect domain separation: personal, professional, project-specific
 - Never fabricate sources or dates
 - All files are editable by the user — treat configuration as knowledge
+
+
+## Local framework maintenance
+
+Use the shared repository conventions in [CLAUDE.md](CLAUDE.md) and the [maintainer wiki](docs/wiki/index.md). Gemini ships seven native commands and seven matching skill files; advanced playbooks are canonical in `.claude/skills/`. See [components](docs/COMPONENTS.md) and [testing limits](docs/TESTING.md).

@@ -4,19 +4,22 @@
 #
 # Usage:
 #   ./cog-update.sh            Interactive update
-#   ./cog-update.sh --check    Check for available updates (no changes)
-#   ./cog-update.sh --dry-run  Show what would change (no changes)
+#   ./cog-update.sh --check    Check for updates (fetches Git metadata; no framework-file changes)
+#   ./cog-update.sh --dry-run  Preview changes (fetches Git metadata; no framework-file changes)
 #   ./cog-update.sh --force    Update all framework files without prompting
 #   ./cog-update.sh --validate Run packaging validator only
 #   ./cog-update.sh --help     Show this help message
 
 set -euo pipefail
 
+COG_SCRIPT_ROOT="$(CDPATH= cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+
 # ── Configuration ────────────────────────────────────────────────────
 REMOTE_NAME="cog-upstream"
 REMOTE_URL="https://github.com/huytieu/COG-second-brain.git"
 BRANCH="main"
 VERSION_FILE="COG-VERSION"
+UPSTREAM_REF="${REMOTE_NAME}/${BRANCH}"
 VALIDATOR_SCRIPT="scripts/validate-agent-surface.sh"
 
 # Framework files — these are safe to overwrite (your content is never in this list)
@@ -222,6 +225,39 @@ FRAMEWORK_FILES=(
 
   # Git infrastructure
   ".gitignore"
+
+  # Public maintenance helpers and static contributor references
+  ".editorconfig"
+  ".gitattributes"
+  ".github/CODEOWNERS"
+  ".github/ISSUE_TEMPLATE/bug_report.md"
+  ".github/ISSUE_TEMPLATE/feature_request.md"
+  ".github/PULL_REQUEST_TEMPLATE.md"
+  ".github/SECURITY.md"
+  ".github/copilot-instructions.md"
+  ".github/dependabot.yml"
+  ".github/workflows/ci.yml"
+  "docs/ARCHITECTURE.md"
+  "docs/COMPONENTS.md"
+  "docs/DEVELOPMENT.md"
+  "docs/INSTALLATION.md"
+  "docs/MCP.md"
+  "docs/SECURITY.md"
+  "docs/TESTING.md"
+  "docs/archive/README.md"
+  "docs/caching-and-optimization.md"
+  "docs/external-calls.md"
+  "docs/integrations-and-assumptions.md"
+  "docs/known-issues.md"
+  "docs/logging.md"
+  "docs/onboarding.md"
+  "docs/requirements.md"
+  "docs/runbooks/framework-update.md"
+  "docs/runbooks/validation.md"
+  "docs/wiki/index.md"
+  "docs/wiki/maintenance.md"
+  "scripts/doc_indexes.py"
+  "tests/test_maintenance.py"
 )
 
 # ── Helpers ──────────────────────────────────────────────────────────
@@ -246,8 +282,8 @@ without touching your personal content (braindumps, profiles, notes).
 
 Usage:
   ./cog-update.sh            Interactive update (prompts per file)
-  ./cog-update.sh --check    Check for available updates (no changes)
-  ./cog-update.sh --dry-run  Show what would change (no changes)
+  ./cog-update.sh --check    Check for updates (fetches Git metadata; no framework-file changes)
+  ./cog-update.sh --dry-run  Preview changes (fetches Git metadata; no framework-file changes)
   ./cog-update.sh --force    Update all framework files without prompting
   ./cog-update.sh --validate Run packaging validator only
   ./cog-update.sh --help     Show this help message
@@ -258,9 +294,10 @@ How it works:
   3. Offers to update changed files (interactive mode) or updates all (--force)
   4. Warns if your working tree is already dirty before replacing framework files
   5. Runs the packaging validator after updates when available
-  6. Your content folders (00-inbox, 01-daily, etc.) are NEVER modified
+  6. Only listed framework paths change; personal notes and profiles are outside that list
+     (tracked framework README/template files inside vault folders are included)
 
-Safe to run anytime — your notes, profiles, and braindumps are never touched.
+Run from a COG checkout. Linked framework paths are rejected. Review local edits before replacing framework files.
 EOF
 }
 
@@ -269,9 +306,19 @@ ensure_remote() {
   if ! git remote get-url "$REMOTE_NAME" &>/dev/null; then
     info "Adding remote ${BOLD}${REMOTE_NAME}${RESET} → ${REMOTE_URL}"
     git remote add "$REMOTE_NAME" "$REMOTE_URL"
+  else
+    local configured_url
+    configured_url=$(git remote get-url "$REMOTE_NAME")
+    configured_url="${configured_url%/}"
+    case "$configured_url" in
+      "$REMOTE_URL"|"https://github.com/huytieu/COG-second-brain"|"git@github.com:huytieu/COG-second-brain.git"|"ssh://git@github.com/huytieu/COG-second-brain.git") ;;
+      *) err "Refusing $REMOTE_NAME: its URL does not identify the official COG upstream"; return 1 ;;
+    esac
   fi
   info "Fetching latest from ${BOLD}${REMOTE_NAME}/${BRANCH}${RESET}..."
   git fetch "$REMOTE_NAME" "$BRANCH" --quiet
+  UPSTREAM_REF=$(git rev-parse --verify "${REMOTE_NAME}/${BRANCH}^{commit}")
+  ok "Fetched upstream metadata"
 }
 
 # ── Get local and upstream versions ──────────────────────────────────
@@ -284,40 +331,88 @@ local_version() {
 }
 
 upstream_version() {
-  git show "${REMOTE_NAME}/${BRANCH}:${VERSION_FILE}" 2>/dev/null | tr -d '[:space:]' || echo "unknown"
+  git show "${UPSTREAM_REF}:${VERSION_FILE}" 2>/dev/null | tr -d '[:space:]' || echo "unknown"
 }
 
 # ── Diff a single file ──────────────────────────────────────────────
 file_has_changes() {
-  local file="$1"
-  # File exists upstream?
-  if ! git show "${REMOTE_NAME}/${BRANCH}:${file}" &>/dev/null; then
-    return 1  # no upstream version
+  local file="$1" entry temporary comparison_exit=0
+  entry=$(git ls-tree "$UPSTREAM_REF" -- "$file") || { err "Cannot inspect upstream path: $file"; exit 2; }
+  [[ -n "$entry" ]] || return 1  # A genuinely absent upstream path is skipped.
+  case "${entry%% *}" in
+    100755) [[ -f "$file" && -x "$file" ]] || return 0 ;;
+    100644) if [[ ! -f "$file" || -x "$file" ]]; then return 0; fi ;;
+    *) err "Unsupported upstream file mode for $file"; exit 2 ;;
+  esac
+  temporary=$(mktemp "${TMPDIR:-/tmp}/cog-compare.XXXXXX") || exit 2
+  if ! git show "${UPSTREAM_REF}:${file}" > "$temporary"; then
+    rm -f "$temporary"
+    err "Cannot compare upstream framework file: $file"
+    exit 2
   fi
-  # File differs from upstream?
-  if [[ -f "$file" ]]; then
-    ! diff -q <(git show "${REMOTE_NAME}/${BRANCH}:${file}" 2>/dev/null) "$file" &>/dev/null
-  else
-    return 0  # file missing locally → counts as changed
-  fi
+  cmp -s "$temporary" "$file" || comparison_exit=$?
+  rm -f "$temporary"
+  case "$comparison_exit" in
+    0) return 1 ;;
+    1) return 0 ;;
+    *) err "Cannot compare local framework file: $file"; exit 2 ;;
+  esac
 }
 
 # ── Update a single file from upstream ───────────────────────────────
-update_file() {
-  local file="$1"
-  local dir
-  dir=$(dirname "$file")
-  [[ "$dir" != "." ]] && mkdir -p "$dir"
-  git show "${REMOTE_NAME}/${BRANCH}:${file}" > "$file" 2>/dev/null
+validate_framework_path() {
+  local remaining="$1" current="." segment
+  while [[ -n "$remaining" ]]; do
+    segment="${remaining%%/*}"
+    if [[ "$remaining" == */* ]]; then remaining="${remaining#*/}"; else remaining=""; fi
+    if [[ -z "$segment" || "$segment" == ".." ]]; then
+      err "Refusing invalid framework path: $1"
+      return 1
+    fi
+    current="$current/$segment"
+    if [[ -L "$current" ]]; then
+      err "Refusing linked framework path: $1"
+      return 1
+    fi
+  done
+  if [[ -e "$1" && ! -f "$1" ]]; then
+    err "Refusing non-regular framework destination: $1"
+    return 1
+  fi
 }
 
-# ── Backup a file before overwriting ─────────────────────────────────
+update_file() {
+  local file="$1" dir temporary object_mode
+  validate_framework_path "$file" || return 1
+  dir=$(dirname "$file")
+  [[ "$dir" == "." ]] || mkdir -p "$dir"
+  temporary=$(mktemp "$dir/.cog-update.XXXXXX")
+  if ! git show "${UPSTREAM_REF}:${file}" > "$temporary"; then
+    rm -f "$temporary"
+    err "Could not read upstream framework file: $file"
+    return 1
+  fi
+  object_mode=$(git ls-tree "$UPSTREAM_REF" -- "$file") || { rm -f "$temporary"; return 1; }
+  object_mode="${object_mode%% *}"
+  case "$object_mode" in
+    100644|100755) ;;
+    *) rm -f "$temporary"; err "Unsupported upstream file mode for $file"; return 1 ;;
+  esac
+  if ! chmod "${object_mode#100}" "$temporary" || ! mv -f "$temporary" "$file"; then
+    rm -f "$temporary"
+    err "Could not replace framework file: $file"
+    return 1
+  fi
+}
+
+# Unique, private backups stay ignored by the repository's backup rules.
 backup_file() {
-  local file="$1"
+  local file="$1" backup
+  validate_framework_path "$file" || return 1
   if [[ -f "$file" ]]; then
-    local backup="${file}.backup-$(date +%Y%m%d-%H%M%S)"
-    cp "$file" "$backup"
-    echo "$backup"
+    backup=$(mktemp "${file}.backup-$(date +%Y%m%d-%H%M%S)-XXXXXX")
+    if ! cp "$file" "$backup"; then rm -f "$backup"; return 1; fi
+    printf '%s\n' "$backup"
   fi
 }
 
@@ -327,7 +422,7 @@ worktree_is_dirty() {
 
 warn_if_dirty() {
   if worktree_is_dirty; then
-    warn "Your working tree has uncommitted changes. Framework updates are still safe, but review carefully before committing."
+    warn "Your working tree has uncommitted changes. Framework updates can replace local framework edits; review before applying."
   fi
 }
 
@@ -335,11 +430,12 @@ warn_if_dirty() {
 # updates so it never drifts from the updated .claude/skills/.
 rebuild_agent_plugin() {
   if [[ -x "scripts/build-agent-plugin.sh" ]]; then
-    ./scripts/build-agent-plugin.sh || warn "Agent plugin mirror rebuild failed; run ./scripts/build-agent-plugin.sh manually"
+    ./scripts/build-agent-plugin.sh || { err "Agent plugin mirror rebuild failed"; return 1; }
   fi
 }
 
 run_validator() {
+  validate_framework_path "$VALIDATOR_SCRIPT" || return 1
   if [[ -x "$VALIDATOR_SCRIPT" ]]; then
     echo ""
     info "Running ${BOLD}${VALIDATOR_SCRIPT}${RESET}..."
@@ -351,8 +447,8 @@ run_validator() {
       return 1
     fi
   else
-    warn "Validator not found at ${VALIDATOR_SCRIPT}; skipping packaging validation"
-    return 0
+    err "Validator not executable at ${VALIDATOR_SCRIPT}; no validation was performed"
+    return 1
   fi
 }
 
@@ -371,9 +467,25 @@ main() {
     esac
   done
 
+  # Resolve paths from the checkout containing this script, not the caller.
+  cd "$COG_SCRIPT_ROOT"
+
   # Sanity check — are we in a git repo?
   if ! git rev-parse --is-inside-work-tree &>/dev/null; then
     err "Not inside a git repository. Run this from your COG folder."
+    exit 1
+  fi
+
+  local repository_root
+  repository_root=$(git rev-parse --show-toplevel)
+  repository_root=$(CDPATH= cd "$repository_root" && pwd -P)
+  if [[ "$repository_root" != "$COG_SCRIPT_ROOT" ]]; then
+    err "The updater must live at the COG Git checkout root"
+    exit 1
+  fi
+
+  if [[ ! -f "$VERSION_FILE" || ! -f .claude-plugin/plugin.json ]]; then
+    err "This is not a COG framework checkout"
     exit 1
   fi
 
@@ -387,6 +499,7 @@ main() {
   echo -e "─────────────────────"
   echo ""
 
+  for file in "${FRAMEWORK_FILES[@]}"; do validate_framework_path "$file" || return 1; done
   ensure_remote
 
   local lv uv
@@ -405,6 +518,18 @@ main() {
   if [[ "$uv" == "unknown" ]]; then
     err "Could not read upstream version. Check your internet connection."
     exit 1
+  fi
+
+  # Serialize comparison and replacement so concurrent revisions cannot interleave.
+  if [[ "$mode" == "interactive" || "$mode" == "force" ]]; then
+    UPDATE_LOCK="$COG_SCRIPT_ROOT/.cog-update.lock"
+    if ! mkdir "$UPDATE_LOCK" 2>/dev/null; then
+      err "Another updater is active, or its lock needs owner review: $UPDATE_LOCK"
+      return 2
+    fi
+    trap 'rmdir -- "$UPDATE_LOCK" 2>/dev/null || true' EXIT
+    trap 'exit 130' INT
+    trap 'exit 143' TERM
   fi
 
   # Collect changed files
@@ -465,19 +590,23 @@ main() {
   # ── Force mode ───────────────────────────────────────────────────
   if [[ "$mode" == "force" ]]; then
     local updated=0
-    for f in "${changed[@]}" "${new_files[@]}"; do
+    # Empty-array expansion under nounset fails on macOS Bash 3.2.
+    local apply_files=()
+    if [[ ${#changed[@]} -gt 0 ]]; then apply_files+=("${changed[@]}"); fi
+    if [[ ${#new_files[@]} -gt 0 ]]; then apply_files+=("${new_files[@]}"); fi
+    for f in "${apply_files[@]}"; do
       if [[ -f "$f" ]]; then
         backup_file "$f" >/dev/null
       fi
       update_file "$f"
       ok "Updated: $f"
-      ((updated++))
+      updated=$((updated + 1))
     done
     echo ""
     ok "Updated ${updated} file(s) to v${uv}"
-    info "Backups saved as *.backup-YYYYMMDD-HHMMSS alongside originals"
+    info "Private backups saved as *.backup-YYYYMMDD-HHMMSS-XXXXXX alongside originals"
     rebuild_agent_plugin
-    run_validator || true
+    run_validator
     exit 0
   fi
 
@@ -493,10 +622,10 @@ main() {
       if [[ -z "$answer" || "$answer" =~ ^[Yy] ]]; then
         update_file "$f"
         ok "Added: $f"
-        ((updated++))
+        updated=$((updated + 1))
       else
         warn "Skipped: $f"
-        ((skipped++))
+        skipped=$((skipped + 1))
       fi
     done
     echo ""
@@ -510,22 +639,22 @@ main() {
       read -r answer
       case "$answer" in
         d|D|diff)
-          diff --color=auto <(cat "$f") <(git show "${REMOTE_NAME}/${BRANCH}:${f}") || true
+          diff --color=auto <(cat "$f") <(git show "${UPSTREAM_REF}:${f}") || true
           echo -ne "  Update this file? [Y/n/b] "
           read -r answer2
           if [[ -z "$answer2" || "$answer2" =~ ^[Yy] ]]; then
             update_file "$f"
             ok "Updated: $f"
-            ((updated++))
+            updated=$((updated + 1))
           elif [[ "$answer2" =~ ^[Bb] ]]; then
             local bk
             bk=$(backup_file "$f")
             update_file "$f"
             ok "Updated: $f (backup: $bk)"
-            ((updated++))
+            updated=$((updated + 1))
           else
             warn "Skipped: $f"
-            ((skipped++))
+            skipped=$((skipped + 1))
           fi
           ;;
         b|B)
@@ -533,17 +662,18 @@ main() {
           bk=$(backup_file "$f")
           update_file "$f"
           ok "Updated: $f (backup: $bk)"
-          ((updated++))
+          updated=$((updated + 1))
           ;;
-        n|N)
+        n|N|no|NO|No)
           warn "Skipped: $f"
-          ((skipped++))
+          skipped=$((skipped + 1))
           ;;
-        *)
+        ""|y|Y|yes|YES|Yes)
           update_file "$f"
           ok "Updated: $f"
-          ((updated++))
+          updated=$((updated + 1))
           ;;
+        *) err "Unrecognized answer; no change applied to $f"; return 2 ;;
       esac
     done
   fi
@@ -556,7 +686,7 @@ main() {
 
   if [[ $updated -gt 0 ]]; then
     rebuild_agent_plugin
-    run_validator || true
+    run_validator
     info "Review changes with ${BOLD}git diff${RESET}, then commit when ready:"
     echo "  git add -A && git commit -m \"Update COG framework to v${uv}\""
   fi

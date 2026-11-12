@@ -44,10 +44,10 @@ That's it! You now have a working second brain.
 **What just happened?**
 - The cloned `COG-second-brain` folder IS your second brain
 - COG now exposes a clear multi-agent support matrix:
-  - `.claude/skills/` - 33 Claude Code skills (full surface)
+  - `.claude/skills/` - 35 Claude Code skills (full surface)
   - `.kiro/powers/` - 7 Kiro powers (core workflows)
   - `.gemini/commands/` + `.gemini/skills/` - 7 Gemini CLI commands (core workflows)
-  - `AGENTS.md` - 33 documented commands for Codex and other agents
+  - `AGENTS.md` - 35 documented commands for Codex and other agents
 - Onboarding will create your personalized directory structure
 - You can validate the packaged agent surfaces anytime with `./scripts/validate-agent-surface.sh`
 
@@ -131,7 +131,7 @@ COG-second-brain/              # This is your second brain folder
 ├── .claude/
 │   ├── agents/                # 6 worker agent definitions
 │   ├── roles/                 # 7 role packs for personalized recommendations
-│   └── skills/                # 33 Claude Code skills
+│   └── skills/                # 35 Claude Code skills
 │       ├── onboarding/
 │       ├── braindump/
 │       ├── daily-brief/
@@ -530,3 +530,8 @@ Once you're comfortable:
 ---
 
 **Welcome to COG!** Your agentic second brain is ready to learn and evolve with you—powered by whichever AI agent you choose.
+
+
+## Local maintenance reference
+
+For helper setup and offline checks, use [installation](docs/INSTALLATION.md), [development](docs/DEVELOPMENT.md), and the [validation runbook](docs/runbooks/validation.md). Updater `--check` and `--dry-run` fetch Git metadata and may add a remote; see the [framework update runbook](docs/runbooks/framework-update.md). Optional integrations remain [user-owned](docs/integrations-and-assumptions.md).

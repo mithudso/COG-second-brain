@@ -39,7 +39,7 @@ We welcome ideas for new features or improvements:
 4. **If your PR changes the framework** (skills, docs, scripts):
    - Bump the version in `COG-VERSION` (e.g., `3.2.0` → `3.3.0`)
    - Add a changelog entry in `CHANGELOG.md`
-   - If adding a new file, add it to the `FRAMEWORK_FILES` array in `cog-update.sh`
+   - Add new source/static reference files to `FRAMEWORK_FILES` in `cog-update.sh`. Keep personal workflow logs, run-specific audit reports and generated local path maps outside the upstream replacement list; stage reviewed framework paths and regenerate maps locally after updates.
    - Update `marketplace-entry.json` and `.claude-plugin/plugin.json` version fields
    - Keep the support matrix truthful in `README.md`, `SETUP.md`, `AGENTS.md`, and `docs/AGENT-SUPPORT.md`
    - Run `./scripts/validate-agent-surface.sh` before opening the PR
@@ -247,3 +247,8 @@ By contributing, you agree that your contributions will be licensed under the MI
 ---
 
 Thank you for contributing to COG! Your help makes this project better for everyone.
+
+
+## Local maintenance reference
+
+Read the [development guide](docs/DEVELOPMENT.md), [testing contract](docs/TESTING.md), [security model](docs/SECURITY.md), and [bootstrap audit](docs/repo-bootstrap-audit-2026-11-12.md). Use synthetic fixtures and preserve private vault content. The [maintainer wiki](docs/wiki/index.md) links all local references.

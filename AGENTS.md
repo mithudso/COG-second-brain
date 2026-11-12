@@ -1079,3 +1079,8 @@ COG follows these principles:
 - **Self-evolving:** Patterns and frameworks grow over time
 - **Low friction:** Quick capture, systematic organization
 - **Obsidian Tasks compatible:** All tasks include emoji due dates
+
+
+## Local framework maintenance
+
+For repository changes, use the [maintainer wiki](docs/wiki/index.md), [component and agent inventory](docs/COMPONENTS.md), [development guide](docs/DEVELOPMENT.md), and [offline validation runbook](docs/runbooks/validation.md). These references describe 35 canonical skills and 10 agents; live host behavior needs separate verification.
