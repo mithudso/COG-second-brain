@@ -18,4 +18,4 @@ This is a maintenance scope record. It does not certify a live agent app or anno
 
 No new live bug claim is inferred from a placeholder alone. TODO/customization markers in playbooks require user-specific setup. Source fixes and the independent optimizer outcome belong to the parent maintenance task; see [bootstrap audit](repo-bootstrap-audit-2026-11-12.md) for the exact standards status.
 
-Skill source parity excludes only known generated Finder/Python artifacts. Keep canonical/primary artifacts intact; mirror rebuild cleans its temporary staged copy. Other unexpected files still indicate source drift.
+Skill source parity excludes only known generated Finder/Python artifacts. The artifact filter changes only its temporary staged copy and preserves canonical inputs. Mirror rebuild still replaces generated output; this maintenance task does not rebuild the primary mirror. Other unexpected files still indicate source drift.

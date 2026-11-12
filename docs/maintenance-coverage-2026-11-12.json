@@ -1476,7 +1476,7 @@
       "path": "scripts/build-agent-plugin.sh",
       "classification": "canonical source",
       "baseline_sha256": "ce6516f0f888e20b0c7d141405f18065a3aa63c2ecedb744a142bd8e2ec7ed4d",
-      "final_sha256": "ee4557b9cc62905be39dd21b8898a25bf827a0cad8a74bc220dedcee33b987ac",
+      "final_sha256": "96781e93fd253493a035e282181ed73319ddc9abdc8e3e5df32efb43da791af6",
       "unchanged": false
     },
     {
