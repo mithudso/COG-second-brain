@@ -2,6 +2,11 @@
 
 All notable changes to COG (Cognition + Obsidian + Git) will be documented in this file.
 
+## [3.13.2] - 2026-11-12
+
+- Compare maintained skill source independently of ignored Finder metadata and Python bytecode artifacts. Exclude those artifacts only from the staged mirror copy while preserving canonical and primary files.
+- Add regression checks for artifact preservation, source parity and unexpected source-file drift.
+
 ## [3.13.1] - 2026-11-12
 
 - Repair complete upstream update control flow, atomic per-file replacement, executable modes, checkout and symlink boundaries, remote identity, and validation failures.

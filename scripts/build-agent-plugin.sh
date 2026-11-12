@@ -44,6 +44,9 @@ trap 'exit 143' TERM
 printf '%s\n' "$$" > "$LOCK_DIR/pid"
 STAGE=$(mktemp -d "$ROOT_DIR/.skills-stage.XXXXXX")
 cp -R .claude/skills "$STAGE/skills"
+# Filter only this task-owned staged copy. Canonical inputs stay untouched;
+# the subsequent mirror replacement retains its existing generated-output contract.
+find "$STAGE/skills" \( -name .DS_Store -o -name __pycache__ -o -name '*.pyc' -o -name '*.pyo' \) -prune -exec rm -rf -- {} +
 if [[ -e skills || -L skills ]]; then mv skills "$STAGE/previous"; fi
 mv "$STAGE/skills" skills
 count=$(find skills -name SKILL.md | wc -l | tr -d ' ')

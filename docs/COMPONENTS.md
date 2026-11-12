@@ -25,8 +25,8 @@
 | `.claude/skills/slop-gate/scripts/scan.py` | Files, `-` for stdin, or `--hook`; `scan(text)` | Python stdlib; reports tells or host hook decisions; Edit checks reconstructable file candidates; no hook is installed automatically |
 | `.claude/skills/voice-baseline/scripts/census.py` | Corpus directory, `--ext`, `--out`, `--check` | Python stdlib; counts words/shapes; optional output write; excludes its output and checked draft; traversal failures are errors |
 | `cog-update.sh` | Interactive, `--check`, `--dry-run`, `--force`, `--validate`, `--help` | Git and Unix tools; upstream fetch, allowlisted replacements, optional backups, mirror rebuild and validator |
-| `scripts/build-agent-plugin.sh` | No arguments | Bash and copy/move tools; single-writer lock, staged copy, replacement of `skills/`, recovery on failed replacement |
-| `scripts/validate-agent-surface.sh` | No arguments | Bash, Python, Git-independent file checks; validates manifests, exact skill set, mirror equality, command headings, version parity, and subset counts |
+| `scripts/build-agent-plugin.sh` | No arguments | Bash and copy/move tools; single-writer lock, staged copy excluding generated Finder/Python artifacts, replacement of `skills/`, recovery on failed replacement |
+| `scripts/validate-agent-surface.sh` | No arguments | Bash, Python, Git-independent file checks; validates manifests, exact skill set, maintained-source mirror equality (known generated artifacts excluded), command headings, version parity, and subset counts |
 
 The seven helpers above are the maintenance regression scope. `scripts/doc_indexes.py` is separate offline documentation tooling: `inventory(root)` obtains Git tracked/staged paths, `render(paths)` formats them, and `--check` compares three maps without writing. `tests/test_maintenance.py` uses `unittest` and temporary repositories.
 

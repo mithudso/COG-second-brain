@@ -149,6 +149,34 @@ class IsolatedTests(unittest.TestCase):
         script = self.write(vault, '.claude/lib/checkpoint.sh', (ROOT / '.claude/lib/checkpoint.sh').read_text(), executable=True)
         return vault, script
 
+    def test_fixture_initialization_ignores_ambient_hook_sources(self):
+        hooks = self.base / 'hostile-hooks'
+        template = self.base / 'hostile-template'
+        marker = self.base / 'hook-executed'
+        hook = '#!/bin/sh\n: > ' + shlex.quote(str(marker)) + '\n'
+        self.write(hooks, 'post-commit', hook, executable=True)
+        self.write(template, 'hooks/post-commit', hook, executable=True)
+        global_config = self.write(self.base, 'hostile-global-config', '[core]\n hooksPath = ' + json.dumps(str(hooks)) + '\n')
+        ambient = {'GIT_TEMPLATE_DIR': str(template), 'GIT_CONFIG_GLOBAL': str(global_config),
+                   'GIT_CONFIG_COUNT': '1', 'GIT_CONFIG_KEY_0': 'core.hooksPath',
+                   'GIT_CONFIG_VALUE_0': str(hooks)}
+        probe = IsolatedTests('test_fixture_initialization_ignores_ambient_hook_sources')
+        try:
+            with patch.dict(os.environ, ambient):
+                probe.setUp()
+                repo = probe.base / 'isolated-repository'
+                probe.initialize(repo)
+                # Refuse to make even a synthetic commit unless the actual
+                # effective hook configuration and template output are empty.
+                config = probe.command([probe.real_git, '-C', str(repo), 'config', '--get', 'core.hooksPath'])
+                self.assertEqual(config.returncode, 1)
+                self.assertFalse(any(path.is_file() and os.access(path, os.X_OK)
+                                     for path in (repo / '.git/hooks').glob('*')))
+                probe.git(repo, 'commit', '--allow-empty', '-m', 'Controlled hook-isolation fixture')
+            self.assertFalse(marker.exists())
+        finally:
+            probe.doCleanups()
+
     def test_force_updates_every_file_and_preserves_vault(self):
         vault = self.updater_fixture(full_table=True)
         result = self.update(vault, '--force')
@@ -582,6 +610,23 @@ class IsolatedTests(unittest.TestCase):
         for pipe in (process.stdin, process.stdout, process.stderr):
             pipe.close.assert_called_once()
 
+    def test_builder_excludes_generated_metadata_without_touching_canonical_files(self):
+        vault = self.base / 'builder-vault'
+        vault.mkdir()
+        self.write(vault, '.claude/skills/one/SKILL.md', 'canonical\n')
+        metadata = ['.DS_Store', 'one/.DS_Store', 'one/scripts/__pycache__/fixture.pyc', 'one/scripts/standalone.pyc', 'one/scripts/old.pyo']
+        for relative in metadata:
+            self.write(vault, '.claude/skills/' + relative, 'synthetic generated artifact\n')
+        script = self.write(vault, 'scripts/build-agent-plugin.sh', (ROOT / 'scripts/build-agent-plugin.sh').read_text(), executable=True)
+        result = self.command([BASH, str(script)])
+        self.assertEqual(result.returncode, 0, result.stderr)
+        for relative in metadata:
+            with self.subTest(path=relative):
+                self.assertFalse((vault / 'skills' / relative).exists())
+                self.assertEqual((vault / '.claude/skills' / relative).read_text(), 'synthetic generated artifact\n')
+        self.assertFalse((vault / 'skills/one/scripts/__pycache__').exists())
+        self.assertEqual((vault / 'skills/one/SKILL.md').read_text(), 'canonical\n')
+
     def test_builder_releases_lock_when_old_stage_cleanup_fails(self):
         vault = self.base / 'builder-vault'
         vault.mkdir()
@@ -648,6 +693,22 @@ class IsolatedTests(unittest.TestCase):
             self.write(vault, f'.gemini/skills/{number}.md', 'fixture\n')
         script = self.write(vault, 'scripts/validate-agent-surface.sh', (ROOT / 'scripts/validate-agent-surface.sh').read_text(), executable=True)
         return vault, script
+
+    def test_validator_ignores_only_known_generated_mirror_artifacts(self):
+        vault, script = self.validator_fixture()
+        self.write(vault, 'skills/.DS_Store', 'synthetic Finder metadata\n')
+        self.write(vault, '.claude/skills/alpha/scripts/__pycache__/fixture.pyc', 'synthetic cache\n')
+        self.write(vault, 'skills/alpha/scripts/old.pyo', 'synthetic cache\n')
+        self.write(vault, 'skills/alpha/scripts/standalone.pyc', 'synthetic cache\n')
+        result = self.command([BASH, str(script)])
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_validator_still_rejects_unexpected_source_mirror_files(self):
+        vault, script = self.validator_fixture()
+        self.write(vault, 'skills/alpha/unexpected.md', 'This is an unexpected source file.\n')
+        result = self.command([BASH, str(script)])
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('mirror is missing or drifted', result.stdout + result.stderr)
 
     def test_validator_rejects_unquoted_colon_in_skill_description(self):
         vault, script = self.validator_fixture()

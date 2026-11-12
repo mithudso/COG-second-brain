@@ -10,6 +10,7 @@ Full repository structural mode; no quick mode, changed-only scope, file cap, ad
 | 2 | 0 | 0 | 24 | 4 | 0 |
 | 3 | 0 | 0 | 1 | 0 | 0 |
 | 4 | 0 | 0 | 1 | 0 | 0 |
+|5 (post-merge local validation)|0|0|2|0|0|
 | Final after directed repair verification | 0 | 0 | 0 | 2 | 0 |
 
 Iteration1 includes two parent-corroborated updater failures beyond the initial per-file reports. Iteration2 includes new test/CI tooling and metadata corrections. Iterations3and4 are directed repairs of the two independent-gate findings; no third gate ran. Initial Low observations were repaired or reclassified after concrete evidence. Final Medium+ count is the directed repair result. Both independent gate attempts dissented before their fixes. No independent audit of the last fix remains, and no defect-free claim is made.
@@ -85,14 +86,14 @@ Low repairs also cover malformed non-object hook payloads, consistent explain ou
 | Per-file `bash -n` loop; Python AST syntax | PASS | PASS | PASS |
 | `./scripts/validate-agent-surface.sh` | PASS on baseline packaging | PASS,35 skills/10 agents/five versions | PASS |
 | Synthetic red counterexamples | No existing suite; original14-test set had14failing assertions | Subsequent red snapshots reproduce newly reported defects | Evidence retained |
-| `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v` | No existing suite | 59 tests pass (latest full run retained in delivery evidence) | PASS |
+| `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v` | No existing suite | 63 tests pass after the source-parity follow-up; latest full run retained in delivery evidence | PASS |
 | `python3 scripts/doc_indexes.py --check` | No map/gate | PASS; all 323 tracked/staged paths accounted | PASS |
 |4 JSON manifests,17 TOML configs,35 canonical/pointer identities | Static baseline inspected | PASS | PASS |
 |90 skill/agent frontmatters plus3metadata YAML files (local Ruby Psych) |8malformed skill frontmatters | PASS | PASS |
 | Local Markdown links, whitespace and intended path review | Existing docs retained | PASS | PASS |
 |Remote CI | No repository workflow | Final pushed head must pass4matrix jobs before merge; exact run IDs in delivery receipt | Delivery gate |
 
-The project enforces no numeric line coverage target. Tests assert behavior, error messages, return codes, permissions, bytes and preservation, including controlled concurrency and deadline cleanup. Test subprocesses use temporary Git repos with empty templates, isolated Git configuration and local fixture fetch rewrites. No real upstream fetch or live vault procedure is tested. No shipped held-out eval plus must-pass set exists; empirical champion/challenger mode is unavailable (`cannot auto-improve`). No champion or embeddings were written.
+The project enforces no numeric line coverage target. Tests assert behavior, error messages, return codes, permissions, bytes and preservation, including controlled concurrency and deadline cleanup. Test subprocesses use temporary Git repos with empty templates, isolated Git configuration and local fixture fetch rewrites. No real upstream fetch or live vault procedure is tested. No shipped held-out eval plus must-pass set exists; empirical champion/challenger mode is unavailable (`cannot auto-improve`). No champion or embedding action was directly requested or invoked. Historical fixture dispatch remains separately unverified pending the task-specific metadata audit.
 
 ## Activated skills and repository passes
 
@@ -756,7 +757,7 @@ Not enabled. Observable changes address corroborated bugs and required repositor
 
 ## Summary
 
-4 iterations ·18 active passes ·full repository profile ·Final C/H/M/L 0/0/0/2 ·Verify: PASS ·Status: BLIND-AUDIT-DISSENT
+5 iterations ·18 active passes ·full repository profile ·Final C/H/M/L 0/0/0/2 ·Verify: PASS ·Status: BLIND-AUDIT-DISSENT
 
 Convergence contract: `~/.claude/skill-consolidation/convergence-and-severity.md`; deterministic helper verdicts and streaming checkpoints are retained with the external run evidence. No heuristic edit-distance claim is made here.
 
@@ -844,3 +845,38 @@ rm -f -- "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktre
 index: skipped (semantic/embedding pause); offline path maps refreshed and path-validated without content or vectors.
 
 memory-central: no prior COG lessons/conventions files found; no global user memory file changed. Durable source lessons were captured through Stele during implementation; the report does not imply those bugs were known before this run.
+
+## Post-merge validation follow-up, iteration 5
+
+Initial delivery PR2 merged as 28064e9e5494049ef8689db214ca96a04fcaea1a after 4 PR and 4 main matrix jobs passed. Exact remote/tested tree equality and all 74 owned blobs were verified. The synchronized primary validator then failed source parity. Its exact diff was `Only in skills: .DS_Store`. The initial bytecode hypothesis was not confirmed by that diff and was corrected immediately in the continuation record.
+
+**Medium — C1/S2, scripts/validate-agent-surface.sh:65 and scripts/build-agent-plugin.sh:** recursive diff and copy treated ignored filesystem artifacts as maintained skill source. Source parity now excludes exactly `.DS_Store`, `__pycache__`, `*.pyc` and `*.pyo`. The artifact filter touches only the owned staging copy. Canonical inputs stay unchanged; rebuilding still replaces the generated skills output. This maintenance task rebuilds only its isolated worktree, preserving the existing primary artifact. Three regressions verify canonical artifact preservation, artifact-only parity and continued rejection of an unexpected source file. Two red cases produced 5 failing assertions before correction.
+
+The follow-up aligns 5 version surfaces at 3.13.2 and extends the suite to 63 tests. Directed fresh per-file diagnostics reviewed both helpers with no additional Medium+ findings; a directed test review covers the new regressions. These are iteration diagnostics, not a third blind exit gate. The exit remains **BLIND-AUDIT-DISSENT**. No corroborated Medium+ finding remains after directed repairs, with the independent-gate limit unchanged. Final remote checks and the primary artifact hash are recorded in the delivery receipt.
+
+Follow-up rollback (isolated follow-up checkout only):
+
+```bash
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/.claude-plugin/plugin.json.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/.claude-plugin/plugin.json"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/.cursor-plugin/plugin.json.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/.cursor-plugin/plugin.json"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/CHANGELOG.md.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/CHANGELOG.md"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/COG-VERSION.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/COG-VERSION"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/docs/COMPONENTS.md.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/docs/COMPONENTS.md"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/docs/TESTING.md.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/docs/TESTING.md"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/docs/code-deep-optimizer-2026-11-12.md.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/docs/code-deep-optimizer-2026-11-12.md"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/docs/known-issues.md.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/docs/known-issues.md"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/docs/maintenance-coverage-2026-11-12.json.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/docs/maintenance-coverage-2026-11-12.json"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/docs/repo-bootstrap-audit-2026-11-12.md.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/docs/repo-bootstrap-audit-2026-11-12.md"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/marketplace-entry.json.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/marketplace-entry.json"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/memory.md.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/memory.md"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/plugin.json.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/plugin.json"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/scripts/build-agent-plugin.sh.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/scripts/build-agent-plugin.sh"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/scripts/validate-agent-surface.sh.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/scripts/validate-agent-surface.sh"
+cp "/Users/mitch.hudson/.claude/skill-consolidation/backups/COG-second-brain-20261112T085029Z/tests/test_maintenance.py.iter5" "/Users/mitch.hudson/dev/.repo-maintenance/20261112T081335Z/app-worktrees/COG-bytecode-parity/tests/test_maintenance.py"
+```
+
+The directed test audit also found a Medium T1 coverage gap: placing the only `.pyc` file below `__pycache__` masked an independent exclusion rule. Standalone `.pyc` and `.pyo` cases plus an explicit directory-absence assertion now cover each rule independently. This is repaired within iteration 5. A 63rd hostile-template/global-hook test proves that fixture initialization strips inherited Git overrides, uses its own empty template, verifies actual hook configuration before committing, and never runs the sentinel hook.
+
+The final local 63-test run uses the task-local `mdbx-egress-runner.py` process-tree guard, with all outbound networking (including loopback) denied. COG has no model/provider inference path. Earlier runs used isolated Git templates/global config but did not use this later egress helper; historical dispatch is therefore unverified until the separate task-specific redacted metadata audit resolves it. Real repository commits had no active hooks; this does not by itself prove fixture isolation in past runs.
+
+Controlled mutation checks removed each of the four exclusion rules independently in disposable helper copies. Both regression targets detected every removed rule with assertion failures and zero test errors. These checks ran under the same process-tree outbound deny guard and never modified the repository helpers.
