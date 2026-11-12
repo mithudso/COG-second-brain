@@ -40,4 +40,10 @@ Use `test_<behavior>` methods, temporary directories with cleanup, synthetic inp
 
 These checks do not certify agent interpretation, Obsidian UI, live onboarding, provider authentication, actual publishing, model output quality, or end-to-end application behavior. The scanner runtime case is a regression bound, not a performance SLA. The validation runbook explains failure triage.
 
-The current maintenance suite collects59tests. Controlled child-process barriers have overall deadlines, and timeout cleanup kills/reaps only the fixture-owned process group. CI also compares the worktree/index against HEAD so staged mutations fail validation.
+The current maintenance suite collects 63 tests. Controlled child-process barriers have overall deadlines, and timeout cleanup kills/reaps only the fixture-owned process group. CI also compares the worktree/index against HEAD so staged mutations fail validation.
+
+Source-parity regressions distinguish maintained files from ignored Finder/Python artifacts. Builder tests preserve canonical artifact bytes while checking that only the staged copy excludes them. Unexpected source-file differences still fail validation.
+
+Git fixtures strip inherited `GIT_*`, disable system/global Git configuration and use an explicitly owned empty template. The hostile-hook regression inspects the actual hook inventory before making a synthetic commit. Local final verification additionally uses an external task-scoped process-tree egress guard; no network exception is needed. That workstation guard is not a shipped runtime dependency and does not retroactively verify earlier runs.
+
+A controlled maintenance mutation check independently removed each of the four artifact exclusions from disposable helper copies; the preservation/parity tests detected every removal with assertion failures.

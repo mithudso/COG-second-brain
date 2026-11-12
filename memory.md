@@ -16,7 +16,13 @@ Append sanitized entries; do not rewrite earlier history. See [archive policy](d
 
 - Source and metadata repairs cover updater atomic/path/mode/answer/lock/error behavior, literal checkpoint recording, risk matching, Markdown scanning, mirror recovery, package/frontmatter validation and bounded fixture cleanup.
 - All 59isolated tests pass. Packaging checks35skills,10 agents and5aligned version surfaces at3.13.1. All 18 tracked vault-layout/template files are unchanged.
-- Offline path maps cover every reviewed tracked/staged path and pass freshness checks. No semantic indexing, embedding, live vault procedure or integration activation occurred.
+- Offline path maps cover every reviewed tracked/staged path and pass freshness checks. No semantic indexing, embedding, live vault procedure or integration activation was directly requested or invoked. Historical fixture dispatch remains separately unverified.
 - Final independent gate and delivery evidence belong to the dated optimizer report and batch delivery receipt; remote CI must pass on the final pushed head before merge.
 
 The optimizer exit remains **BLIND-AUDIT-DISSENT** after both allowed independent gates found subsequently repaired defects. All 59 tests and the final conventional checks pass, but no third blind audit of the final directed repair is claimed.
+
+### Version 3.13.2 source-parity follow-up
+
+The initial remote delivery and all 8 CI jobs passed. Actual primary packaging validation then found one ignored Finder metadata file in `skills/`. This follow-up preserves it, excludes known generated Finder/Python artifacts from source parity, and cleans artifacts only in owned build staging. Three new regressions extend the suite to 63 tests. Both independent gate attempts remain exhausted; BLIND-AUDIT-DISSENT stays explicit.
+
+Final local fixture verification now uses a process-tree outbound deny guard. The added hostile-template/global-hook sentinel passes. Historical fixture dispatch remains unverified pending task-specific metadata review; existing template/config isolation is recorded as source evidence rather than an absolute no-dispatch claim.

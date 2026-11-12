@@ -77,7 +77,7 @@ The canonical inventory is 35 skills and 10 agents; Kiro/Gemini each ship seven 
 | `SETUP.md`, `WORKFLOW.md` maintenance links | PRESENT | Existing playbooks retained; appended network/validation boundaries. Harness remains opt-in. |
 | `docs/llm-repo-index.json` | EXCEPTION | Parent path-only indexer instead emits high_signal_file_index.json, codebase-overview.md, and llms.txt. No semantic or content index. |
 | Context-file global skill installation and skillfish metadata | EXCEPTION | No docs/*-context.md files or global skill installation requested. No user-environment mutations. |
-| Legacy support counts and agent roles | PRESENT | Refreshed support matrix and manifest metadata to35skills/commands and10agents. fix-agent remains writable;3verification roles are read-only. Five versions align at3.13.1. |
+| Legacy support counts and agent roles | PRESENT | Refreshed support matrix and manifest metadata to35skills/commands and10agents. fix-agent remains writable;3verification roles are read-only. Five versions align at3.13.2. |
 | Generated agent-frontmatter table and drift check | GAP | All 10 roles linked in COMPONENTS.md; AGENTS.md remains a hand-maintained catalog. No claim that its table is generated. |
 | Concept-tree registration/refresh | EXCEPTION | No repository concept-tree runtime; external registries/knowledge lifecycle belong to parent. |
 | MCP boot/self-test/tool count | EXCEPTION | Repository ships no MCP server. User connections are not probed. |
@@ -89,7 +89,7 @@ The canonical inventory is 35 skills and 10 agents; Kiro/Gemini each ship seven 
 | Five-standard external-call contract | GAP | CLI exists; console diagnostics/manual recovery are partial; no central log/automatic remediation. Dashboard/datastore are architectural exceptions. See external-calls.md. |
 | Log rotation near 200 KB | GAP | Manual archive guidance exists; no automated swap-aware rotation helper. |
 | Security response-time SLA | GAP | Maintainer choice; no commitment invented. |
-| Full optimizer assessment/report | ADDED | Detailed structural findings,59 synthetic regression tests, full path coverage, snapshots/rollback and qualified independent gate result in code-deep-optimizer-2026-11-12.md. |
+| Full optimizer assessment/report | ADDED | Detailed structural findings,63 synthetic regression tests, full path coverage, snapshots/rollback and qualified independent gate result in code-deep-optimizer-2026-11-12.md. |
 
 ## Validation contract and exact limits
 
@@ -113,8 +113,10 @@ Local review resolved all relative links in 27 new Markdown docs/metadata/log fi
 
 ## Final maintenance verification
 
-The full run repairs one High and54Medium findings across four structural iterations (including two directed blind-gate repairs), including later metadata/CI/test defects. All 59 synthetic tests, packaging, shell syntax,4 JSON manifests,17 TOML configs,35 pointer identities,90 frontmatters and3YAML metadata files pass locally. The narrow dependency-free skill-frontmatter guard covers required fields and the observed bare-colon failure; it is not a complete YAML parser. All 18 tracked vault-layout/template files remain byte-identical. No untracked private primary-vault paths were inventoried.
+The full run repairs one High and 56 Medium findings across five structural iterations (including two directed blind-gate repairs), including later metadata/CI/test defects. All 63 synthetic tests, packaging, shell syntax, 4 JSON manifests, 17 TOML configs, 35 pointer identities, 90 frontmatters and 3 YAML metadata files pass locally. The narrow dependency-free skill-frontmatter guard covers required fields and the observed bare-colon failure; it is not a complete YAML parser. All 18 tracked vault-layout/template files remain byte-identical. No untracked private primary-vault paths were inventoried.
 
 The source-only independent gate and final delivery are recorded in the optimizer report and external batch receipt. Four remote CI combinations must pass on the final pushed head before merge. The delivery receipt records observed check IDs, merged PR/content verification, and safe primary synchronization; this document does not claim a merge in advance. Remaining manifest gaps above are intentional explicit limits, including workflow-log rotation, generated frontmatter table, full operations coverage, and maintainer policy choices.
 
-The optimizer exit remains **BLIND-AUDIT-DISSENT** after both allowed independent gates found subsequently repaired defects. All 59 tests and the final conventional checks pass, but no third blind audit of the final directed repair is claimed.
+The optimizer exit remains **BLIND-AUDIT-DISSENT** after both allowed independent gates found subsequently repaired defects. All 63 tests and the final conventional checks pass, but no third blind audit of the final directed repair is claimed.
+
+A post-merge primary check found ignored `skills/.DS_Store` as the only mirror difference. The focused follow-up preserves that existing primary artifact, excludes known generated artifacts from source parity/staged builds, and adds three preservation/drift regressions. Version 3.13.2 and 63 tests supersede the initial delivery numbers; actual follow-up CI/primary validation remains a delivery requirement.

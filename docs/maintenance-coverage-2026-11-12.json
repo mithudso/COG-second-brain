@@ -328,7 +328,7 @@
       "path": ".claude-plugin/plugin.json",
       "classification": "framework prompt/config/reference",
       "baseline_sha256": "36db3b46473b38fa64737290dcbd75eba77f31f4e213845559d16e923ec1ebfe",
-      "final_sha256": "114f5cb7f6d05c2ad1693fa60d1e2074c4c196af9d889f6e300b8438224dc324",
+      "final_sha256": "cf511ea625037a6893fcd89e80ada2ce62f00e37687e175046461e0426c5c5e6",
       "unchanged": false
     },
     {
@@ -1056,7 +1056,7 @@
       "path": ".cursor-plugin/plugin.json",
       "classification": "framework prompt/config/reference",
       "baseline_sha256": "7dc807a6770833312458ad81306d7c3f7c23ceef19bab6a6b9f1eca599e4592a",
-      "final_sha256": "d969d7c9bb076ecca0d7599351248c98ac0e8cd88e0d2cdb567930e680706fef",
+      "final_sha256": "c6371401cebb1e1a7244b039882b8ad8498c8cf3521c19533215e355a2a63868",
       "unchanged": false
     },
     {
@@ -1378,7 +1378,7 @@
       "path": "CHANGELOG.md",
       "classification": "framework prompt/config/reference",
       "baseline_sha256": "e7cfe028c8574052251a9fd4902de21d930172d559c49005444eef2c1046b31c",
-      "final_sha256": "8810e97ed4c48964bb5237456dfde045381c75f3760599c15880b09592bfff8c",
+      "final_sha256": "f5d45968dbee65db0d07dbe95bf30d16382d381b54b9068a9dcada4257f95f99",
       "unchanged": false
     },
     {
@@ -1392,7 +1392,7 @@
       "path": "COG-VERSION",
       "classification": "framework prompt/config/reference",
       "baseline_sha256": "3713acffd953d571bccbe163951aeef988a75f945c049b7fba53f080311267fa",
-      "final_sha256": "775b7eb1f0c63876a8e68d85bf955a2738b0ef9e1b1d5c46278f506bd1fc04ca",
+      "final_sha256": "f8237a9fc32a95b709a7ebe37ce43ffe209e90001405f777fc6075d93bce1eb8",
       "unchanged": false
     },
     {
@@ -1462,28 +1462,28 @@
       "path": "marketplace-entry.json",
       "classification": "framework prompt/config/reference",
       "baseline_sha256": "58fc0a376d6a0ff8b3b27b746b89b50bc1493f9494f017b317f59afa1d9ef301",
-      "final_sha256": "b3907d9fdcb20b7897926a83cc481c4ca57844eaf257421495a2b77ebc0c4223",
+      "final_sha256": "723d9590105e9e8a2430547bcf669cddead4b3767be9efc575c9c1531d3c2aa0",
       "unchanged": false
     },
     {
       "path": "plugin.json",
       "classification": "framework prompt/config/reference",
       "baseline_sha256": "4e026b852254b7bd84a4624f79ff38421ec4115ed99ccc13cd765bbdad0172c6",
-      "final_sha256": "79685629a6166d84400f7eb4520dfde0cf66e0073c0ca7637f05558582186e26",
+      "final_sha256": "09463cf9e79fdb9dc76ccad1b37805cd61ce506b19b4897579878db00c9f8289",
       "unchanged": false
     },
     {
       "path": "scripts/build-agent-plugin.sh",
       "classification": "canonical source",
       "baseline_sha256": "ce6516f0f888e20b0c7d141405f18065a3aa63c2ecedb744a142bd8e2ec7ed4d",
-      "final_sha256": "00179e5379c7dcaa01764ecbb886666ccbf3c3ce992b5e4603ed7fa6a7146abf",
+      "final_sha256": "ee4557b9cc62905be39dd21b8898a25bf827a0cad8a74bc220dedcee33b987ac",
       "unchanged": false
     },
     {
       "path": "scripts/validate-agent-surface.sh",
       "classification": "canonical source",
       "baseline_sha256": "468f7dddaed58a62397a848790dcc3f126cfa369df7bb363d8f52a3c396d600d",
-      "final_sha256": "05524a58a4ed56aeff2a5a8e822b77b3da6327a8857548887bc8a40f8276e758",
+      "final_sha256": "1ec3399c9c207ed76e1d39f54668ff594db397900e69a24333e342331e597a72",
       "unchanged": false
     },
     {
@@ -2052,5 +2052,22 @@
       ".github/workflows/ci.yml"
     ],
     "reasoned_exclusions": "Generated mirrors byte-compared; instructional playbooks/config/reference reviewed structurally with body preservation; all18vault-layout/template paths byte-identical; no untracked private paths inventoried."
+  },
+  "followup": {
+    "initial_merge": "28064e9e5494049ef8689db214ca96a04fcaea1a",
+    "reason": "Primary ignored skills/.DS_Store caused false source drift",
+    "generated_artifact_exclusions": [
+      ".DS_Store",
+      "__pycache__",
+      "*.pyc",
+      "*.pyo"
+    ],
+    "primary_artifact_preserved": "Exact SHA256 recorded locally, file never deleted",
+    "iteration": 5,
+    "version": "3.13.2",
+    "tests": 63,
+    "status": "BLIND-AUDIT-DISSENT retained; no third gate",
+    "historical_fixture_dispatch": "unverified pending task-specific redacted metadata audit",
+    "final_local_guard": "process-tree outbound deny, no loopback exception; hostile-template/global-hook sentinel passed"
   }
 }

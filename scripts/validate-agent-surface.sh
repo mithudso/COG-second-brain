@@ -62,7 +62,7 @@ else
   record_failure "plugin.json is missing, invalid JSON, or missing \$schema/name (Agent Plugins spec 1.0.0)"
 fi
 
-if [[ -d skills ]] && diff -r .claude/skills skills >/dev/null 2>&1; then
+if [[ -d skills ]] && diff -r -x .DS_Store -x __pycache__ -x '*.pyc' -x '*.pyo' .claude/skills skills >/dev/null 2>&1; then
   ok "skills/ mirror matches .claude/skills (Agent Plugins surface in sync)"
 else
   record_failure "skills/ mirror is missing or drifted from .claude/skills — run ./scripts/build-agent-plugin.sh"
