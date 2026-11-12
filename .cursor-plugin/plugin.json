@@ -1,8 +1,8 @@
 {
   "name": "cog-second-brain",
   "displayName": "COG: Agentic Second Brain",
-  "version": "3.12.0",
-  "description": "Self-evolving second brain powered by AI agents, Obsidian markdown, and Git. 33 skills, 10 agents (6 workers + 4 read-only verifiers), people CRM with tiered enrichment. Closed-loop harness release: V-model verification lifecycle with criterion-traced evidence, risk lanes, multi-session ultragoals with a north-star acceptance gate, craft skills for writing and visuals, and paired anti-slop design skills for marketing and product UI. Works with Claude Code, Cursor, Kiro, Gemini CLI, and Codex.",
+  "version": "3.13.1",
+  "description": "Self-evolving second brain powered by AI agents, Obsidian markdown, and Git. 35 skills, 10 agents (6 workers + 3 read-only verification roles + fix-agent), people CRM with tiered enrichment. Closed-loop harness release: V-model verification lifecycle with criterion-traced evidence, risk lanes, multi-session ultragoals with a north-star acceptance gate, craft skills for writing and visuals, and paired anti-slop design skills for marketing and product UI. Works with Claude Code, Cursor, Kiro, Gemini CLI, and Codex.",
   "author": {
     "name": "Huy Tieu",
     "email": "tqhuy1991@gmail.com",
@@ -205,14 +205,28 @@
       "name": "product-ui-taste",
       "path": ".claude/skills/product-ui-taste/SKILL.md",
       "description": "Anti-slop skill for dense product surfaces (dashboards, tables, forms, wizards, admin consoles) - frame-first, correct at every edge case real data produces"
+    },
+    {
+      "name": "slop-gate",
+      "description": "Refuse AI-slop tells in anything about to be written, published, or sent; runs in CI or as a hook",
+      "path": ".claude/skills/slop-gate/SKILL.md"
+    },
+    {
+      "name": "voice-baseline",
+      "description": "Measure the words and sentence shapes you over-use so an agent stops amplifying your tics",
+      "path": ".claude/skills/voice-baseline/SKILL.md"
     }
   ],
   "agents": [
+    "brief-people-updater",
+    "fix-agent",
+    "harvest-curator",
+    "integration-verifier",
+    "task-verifier",
     "worker-data-collector",
-    "worker-researcher",
-    "worker-file-ops",
     "worker-executor",
+    "worker-file-ops",
     "worker-publisher",
-    "brief-people-updater"
+    "worker-researcher"
   ]
 }

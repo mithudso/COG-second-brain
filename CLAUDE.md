@@ -225,7 +225,7 @@ Role packs live in `.claude/roles/`. New roles can be added by dropping a file f
 - `COMPETITIVE-WATCHLIST.md` — Companies/people being tracked
 
 ### Framework files (updated via `cog-update.sh` or `/update-cog`)
-- `.claude/skills/`: Claude Code skills (33 skills)
+- `.claude/skills/`: Claude Code skills (35 skills)
 - `.claude/agents/` - Worker and verifier agent definitions (10 agents)
 - `.claude/roles/` — Role packs for personalized recommendations
 - `.claude/lib/` - Harness helper scripts (`checkpoint.sh`, `lane-classify.sh`)
@@ -247,3 +247,12 @@ Role packs live in `.claude/roles/`. New roles can be added by dropping a file f
 - `03-professional/` — Professional braindumps and strategy
 - `04-projects/` — Per-project tracking
 - `05-knowledge/` — Consolidated insights and patterns
+
+
+## Local framework maintenance
+
+Repository shape and helper boundaries are in [architecture](docs/ARCHITECTURE.md) and [components](docs/COMPONENTS.md). Commands and environment assumptions are in [development](docs/DEVELOPMENT.md); use the [offline validation runbook](docs/runbooks/validation.md). Optional MCP connections are [user-owned](docs/MCP.md).
+
+### Workflow log rule
+
+Append sanitized request summaries to [prompts.md](prompts.md) and progress entries to [memory.md](memory.md). Coordinate version changes across the four version files with the release owner. Keep logs append-only and follow the [archive guidance](docs/archive/README.md).

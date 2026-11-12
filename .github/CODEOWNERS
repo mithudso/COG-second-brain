@@ -1,0 +1,12 @@
+# Review ownership for the personal fork. GitHub enforces required review only
+# when configured in repository rules; this file alone does not enable it.
+* @mithudso
+/.claude/ @mithudso
+/.agents/ @mithudso
+/.kiro/ @mithudso
+/.gemini/ @mithudso
+/skills/ @mithudso
+/scripts/ @mithudso
+/tests/ @mithudso
+/docs/ @mithudso
+/.github/ @mithudso

@@ -7,7 +7,7 @@ Usage
     cat draft.md | python3 scan.py -    # scan stdin
     python3 scan.py --hook              # Claude Code PreToolUse/Stop hook mode (JSON on stdin)
 
-Exit codes: 0 clean, 1 tells found (so it works in CI and in a pre-commit hook).
+Exit codes: 0 clean, 1 tells found, 2 unreadable input (batch checks continue).
 
 Two tiers
 ---------
@@ -22,6 +22,7 @@ import json
 import os
 import re
 import sys
+from pathlib import Path
 
 SOFT_LIMIT = 3
 
@@ -37,18 +38,18 @@ HARD = [
     ("X-not-Y contrast", r"\b[a-z][a-z-]+, not (a |an |the |just |only )?[a-z][a-z -]{1,30}[.;:]", 0),
     ("X-not-Y contrast", r"\b(rather than|instead of) [a-z][a-z -]{1,30}[.;]", re.I),
     ("rhetorical heading",
-     r"^\s*(#{1,6}|<h[1-6][^>]*>)\s*(why (this|it) matters|the (key|real) (insight|point|opportunity|truth)|what this is not|the bottom line|the deeper point|the uncomfortable truth|here'?s the thing|the takeaway|so what|what comes next|what'?s next|where (it|this|we) go(es)? (from here|next))\b", re.I | re.M),
-    ("The <Noun> heading", r"^\s*(#{1,6}|<h[1-6][^>]*>)\s*The [A-Z][a-z]+\s*(</h[1-6]>)?\s*$", re.M),
+     r"^[ \t]*(#{1,6}|<h[1-6][^\r\n>]*>)[ \t]*(why (this|it) matters|the (key|real) (insight|point|opportunity|truth)|what this is not|the bottom line|the deeper point|the uncomfortable truth|here'?s the thing|the takeaway|so what|what comes next|what'?s next|where (it|this|we) go(es)? (from here|next))\b", re.I | re.M),
+    ("The <Noun> heading", r"^[ \t]*(#{1,6}|<h[1-6][^\r\n>]*>)[ \t]*The [A-Z][a-z]+(?:[ \t]*</h[1-6]>)?[ \t]*$", re.M),
     ("verdict kicker",
-     r"\bThat (is|was|'s) (the (point|lie|whole (point|thing)|part [a-z ]{3,30})|all [a-z ]{2,30} is for)\.", re.I),
+     r"\bThat(?: is| was|['’]s) (the (point|lie|whole (point|thing)|part [a-z ]{3,30})|all [a-z ]{2,30} is for)\.", re.I),
     ("fake-profound closer",
      r"\b(let that sink in|this changes everything|what nobody (tells|talks about)|the part (everyone|most people) miss(es)?|and that'?s not nothing)\b", re.I),
     ("throat-clearing",
      r"\b(here'?s the thing|let me be clear|it'?s worth noting|it is worth noting|it'?s important to note|at the end of the day|in today'?s (fast-paced|ever-evolving|digital))\b", re.I),
     ("sycophancy",
      r"\b(great question|you'?re (absolutely )?right to push back|that'?s on me|you were right to)\b", re.I),
-    ("summary-recap ending", r"^\s*(in conclusion|ultimately|overall|to sum up|in summary)\b", re.I | re.M),
-    ("emoji heading", r"^\s*#{1,6}\s*[\U0001F300-\U0001FAFF☀-➿]", re.M),
+    ("summary-recap ending", r"^[ \t]*(in conclusion|ultimately|overall|to sum up|in summary)\b", re.I | re.M),
+    ("emoji heading", r"^[ \t]*#{1,6}[ \t]*[\U0001F300-\U0001FAFF☀-➿]", re.M),
 ]
 
 FILLER = re.compile(
@@ -57,16 +58,38 @@ FILLER = re.compile(
     r"|load-bearing|unlock the (potential|power)|genuinely|quietly|deep dive|dive in(to)?"
     r"|clean|plain|simple|elegant|powerful|lightweight)\b", re.I)
 
-QUOTED = re.compile(r"`[^`\n]*`|\"[^\"\n]{0,160}\"|“[^”\n]{0,160}”|^```.*?^```", re.M | re.S)
+QUOTED = re.compile(r"`[^`\n]*`|\"[^\"\n]{0,160}\"|“[^”\n]{0,160}”", re.M | re.S)
 
 TEXT_EXT = {".md", ".mdx", ".html", ".htm", ".txt", ".svg", ".rst", ""}
-SKIP_PATH = ("no-ai-slop", "slop-gate", "voice-baseline", "/memory/", "/hooks/", "/logs/",
-             "node_modules", "/site/", "/build/", "/dist/")
+SKIP_COMPONENTS = {"no-ai-slop", "slop-gate", "voice-baseline", "memory", "hooks", "logs",
+                   "node_modules", "site", "build", "dist"}
+
+
+def strip_fences(text):
+    """Ignore CommonMark-style backtick/tilde exhibits, preserving line boundaries."""
+    output, fence_char, fence_size = [], '', 0
+    for line in text.splitlines(keepends=True):
+        content = line.rstrip('\r\n')
+        stripped = content.lstrip(' ')
+        indentation = len(content) - len(stripped)
+        if fence_char:
+            closing = stripped.rstrip(' \t')
+            if indentation <= 3 and len(closing) >= fence_size and set(closing) == {fence_char}:
+                fence_char = ''
+            output.append('\n' if line.endswith(('\n', '\r')) else '')
+            continue
+        opening = re.match(r'^ {0,3}(`{3,}|~{3,})(.*)$', content)
+        if opening and not (opening[1][0] == '`' and '`' in opening[2]):
+            fence_char, fence_size = opening[1][0], len(opening[1])
+            output.append('\n' if line.endswith(('\n', '\r')) else '')
+        else:
+            output.append(line)
+    return ''.join(output)
 
 
 def strip_quoted(text):
     """Quoted, fenced and code-formatted spans are exhibits, not the author's voice."""
-    return QUOTED.sub(" ", text)
+    return QUOTED.sub(" ", strip_fences(text))
 
 
 def scan(text, soft_limit=SOFT_LIMIT):
@@ -92,7 +115,7 @@ def exempt(path, text):
         return True
     if not path:
         return False
-    if any(s in path for s in SKIP_PATH):
+    if set(Path(os.path.normpath(path)).parts) & SKIP_COMPONENTS:
         return True
     ext = os.path.splitext(path)[1].lower()
     return bool(ext) and ext not in TEXT_EXT
@@ -104,6 +127,10 @@ def hook():
     try:
         d = json.loads(sys.stdin.read())
     except Exception:
+        print("{}")
+        return 0
+
+    if not isinstance(d, dict):
         print("{}")
         return 0
 
@@ -137,19 +164,32 @@ def hook():
 
     tool = d.get("tool_name", "")
     ti = d.get("tool_input") or {}
+    if not isinstance(ti, dict):
+        print("{}")
+        return 0
     path = ti.get("file_path") or ti.get("path") or ""
+    if not isinstance(path, str):
+        print("{}")
+        return 0
     text = ""
     if tool == "Write":
         text = ti.get("content", "") or ""
     elif tool == "Edit":
         text = ti.get("new_string", "") or ""
+        if not isinstance(text, str):
+            print("{}")
+            return 0
         if path and os.path.isfile(path):
             try:
-                if "slop-ok:" in open(path, encoding="utf-8").read():
-                    print("{}")
-                    return 0
-            except Exception:
+                with open(path, encoding="utf-8") as source:
+                    existing = source.read()
+                old = ti.get("old_string")
+                replace_all = ti.get("replace_all") is True
+                if isinstance(old, str) and old and old in existing and (replace_all or existing.count(old) == 1):
+                    text = existing.replace(old, text, -1 if replace_all else 1)
+            except (OSError, UnicodeError):
                 pass
+
     else:
         # Any message-sending tool: Slack, Confluence, Jira, Linear, email.
         for key in ("message", "text", "body", "content"):
@@ -161,7 +201,7 @@ def hook():
             print("{}")
             return 0
 
-    if exempt(path, text) or not text:
+    if not isinstance(text, str) or exempt(path, text) or not text:
         print("{}")
         return 0
 
@@ -186,14 +226,26 @@ def main():
         return 0
     failed = 0
     for path in args:
-        text = sys.stdin.read() if path == "-" else open(path, encoding="utf-8").read()
         label = "stdin" if path == "-" else path
-        if path != "-" and exempt(path, text):
+        if path != "-" and exempt(path, ""):
+            print("%s: exempt" % label)
+            continue
+        try:
+            if path == "-":
+                text = sys.stdin.read()
+            else:
+                with open(path, encoding="utf-8") as source:
+                    text = source.read()
+        except (OSError, UnicodeError) as error:
+            print("%s: cannot read: %s" % (label, error), file=sys.stderr)
+            failed = 2
+            continue
+        if exempt(path if path != "-" else "", text):
             print("%s: exempt" % label)
             continue
         hits = scan(text)
         if hits:
-            failed = 1
+            failed = max(failed, 1)
             print("%s: %d tell(s)" % (label, len(hits)))
             for h in hits:
                 print("  " + h)

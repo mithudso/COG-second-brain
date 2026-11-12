@@ -33,26 +33,46 @@ WATCH = [
 # "The <noun> <past-tense verb> <short predicate>." parked at the end of a paragraph,
 # where it lands like a verdict instead of carrying a fact.
 VERDICT = re.compile(
-    r"(?:^|\. )The [a-z][a-z-]{2,14} (?:was|were|is|are|went|took|did|does|fell|lives|sits|stays|goes|came|holds|catches|kills|works|stops|moves|breaks)\b[^.\n]{0,40}\.\s*$",
+    r"(?:^|[.!?][ \t]+)The [a-z][a-z-]{2,14} (?:was|were|is|are|went|took|did|does|fell|lives|sits|stays|goes|came|holds|catches|kills|works|stops|moves|breaks)\b[^.\n]{0,40}\.[ \t]*(?=\n[ \t]*\n|\n?\Z)",
     re.M)
-KICKER = re.compile(r"\bThat (?:is|was|'s) (?:the|all|it|what|why)\b[^.\n]{0,40}\.", re.I)
-HEADING = re.compile(r"^\s*#{1,6}\s+(.+?)\s*$", re.M)
+KICKER = re.compile(r"\bThat(?: is| was|['’]s) (?:the|all|it|what|why)\b[^.\n]{0,40}\.", re.I)
+HEADING = re.compile(r"^[ \t]*#{1,6}[ \t]+([^\r\n]+)$", re.M)
 SENTENCE = re.compile(r"[.!?](?:\s|$)")
-OPENER = re.compile(r"(?:^|\. )([A-Z][a-z]+) ", re.M)
+OPENER = re.compile(r"(?:^|[.!?][ \t]+)([A-Z][a-z]+) ", re.M)
 FRONTMATTER = re.compile(r"\A---\n.*?\n---\n", re.S)
-CODE = re.compile(r"^```.*?^```", re.M | re.S)
+
+
+def strip_fences(text):
+    """Ignore CommonMark-style backtick/tilde exhibits, preserving line boundaries."""
+    output, fence_char, fence_size = [], '', 0
+    for line in text.splitlines(keepends=True):
+        content = line.rstrip('\r\n')
+        stripped = content.lstrip(' ')
+        indentation = len(content) - len(stripped)
+        if fence_char:
+            closing = stripped.rstrip(' \t')
+            if indentation <= 3 and len(closing) >= fence_size and set(closing) == {fence_char}:
+                fence_char = ''
+            output.append('\n' if line.endswith(('\n', '\r')) else '')
+            continue
+        opening = re.match(r'^ {0,3}(`{3,}|~{3,})(.*)$', content)
+        if opening and not (opening[1][0] == '`' and '`' in opening[2]):
+            fence_char, fence_size = opening[1][0], len(opening[1])
+            output.append('\n' if line.endswith(('\n', '\r')) else '')
+        else:
+            output.append(line)
+    return ''.join(output)
 
 
 def load(path):
-    text = open(path, encoding="utf-8", errors="ignore").read()
+    with open(path, encoding="utf-8", errors="ignore") as source:
+        text = source.read()
     text = FRONTMATTER.sub("", text)
-    return CODE.sub(" ", text)
+    return strip_fences(text)
 
 
 def count_phrase(text, phrase):
-    if " " in phrase or "'" in phrase:
-        return len(re.findall(re.escape(phrase), text, re.I))
-    return len(re.findall(r"\b%s\b" % re.escape(phrase), text, re.I))
+    return len(re.findall(r"(?<!\w)%s(?!\w)" % re.escape(phrase), text, re.I))
 
 
 def census(paths):
@@ -127,7 +147,8 @@ def check(c, draft):
     sentences = max(len(SENTENCE.findall(t)), 1)
     print("%s: %d sentences" % (draft, sentences))
     flagged = 0
-    for w, total in c["words"].most_common():
+    for w in WATCH:
+        total = c["words"][w]
         rate = total / n
         here = count_phrase(t, w)
         if here and here > max(rate, 1):
@@ -150,32 +171,49 @@ def check(c, draft):
     return 1 if flagged else 0
 
 
+def collect_paths(corpus, extension, excluded=()):
+    if not os.path.isdir(corpus):
+        raise NotADirectoryError(corpus)
+    excluded_paths = {os.path.realpath(path) for path in excluded if path}
+    paths = []
+
+    def walk_error(error):
+        raise error
+
+    for root, _, files in os.walk(corpus, onerror=walk_error):
+        for name in files:
+            path = os.path.join(root, name)
+            if name.endswith(extension) and os.path.realpath(path) not in excluded_paths:
+                paths.append(path)
+    return sorted(paths)
+
+
 def main():
     ap = argparse.ArgumentParser(description="Measure a writing corpus for over-used words and shapes.")
     ap.add_argument("corpus", help="directory of your own writing")
     ap.add_argument("--ext", default=".md", help="file extension to include (default .md)")
-    ap.add_argument("--out", default="", help="write the baseline to this file instead of stdout")
-    ap.add_argument("--check", default="", help="compare one draft against the corpus rate")
+    ap.add_argument("--out", default="", help="write the baseline to this file instead of stdout; excluded from the corpus")
+    ap.add_argument("--check", default="", help="compare one draft against the corpus rate; excludes that draft from the corpus")
     a = ap.parse_args()
 
-    paths = []
-    for root, _, files in os.walk(a.corpus):
-        for f in files:
-            if f.endswith(a.ext):
-                paths.append(os.path.join(root, f))
-    if not paths:
-        print("no %s files under %s" % (a.ext, a.corpus), file=sys.stderr)
+    try:
+        paths = collect_paths(a.corpus, a.ext, (a.out, a.check))
+        if not paths:
+            print("no %s files under %s" % (a.ext, a.corpus), file=sys.stderr)
+            return 2
+        c = census(paths)
+        if a.check:
+            return check(c, a.check)
+        out = render(c, a.corpus)
+        if a.out:
+            with open(a.out, "w", encoding="utf-8") as output:
+                output.write(out)
+            print("wrote %s (%d files, %d sentences)" % (a.out, c["files"], c["sentences"]))
+        else:
+            print(out)
+    except (OSError, UnicodeError) as error:
+        print("voice-baseline: %s" % error, file=sys.stderr)
         return 2
-
-    c = census(sorted(paths))
-    if a.check:
-        return check(c, a.check)
-    out = render(c, a.corpus)
-    if a.out:
-        open(a.out, "w", encoding="utf-8").write(out)
-        print("wrote %s (%d files, %d sentences)" % (a.out, c["files"], c["sentences"]))
-    else:
-        print(out)
     return 0
 
 
