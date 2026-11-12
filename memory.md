@@ -26,3 +26,12 @@ The optimizer exit remains **BLIND-AUDIT-DISSENT** after both allowed independen
 The initial remote delivery and all 8 CI jobs passed. Actual primary packaging validation then found one ignored Finder metadata file in `skills/`. This follow-up preserves it, excludes known generated Finder/Python artifacts from source parity, and cleans artifacts only in owned build staging. Three new regressions extend the suite to 63 tests. Both independent gate attempts remain exhausted; BLIND-AUDIT-DISSENT stays explicit.
 
 Final local fixture verification now uses a process-tree outbound deny guard. The added hostile-template/global-hook sentinel passes. Historical fixture dispatch remains unverified pending task-specific metadata review; existing template/config isolation is recorded as source evidence rather than an absolute no-dispatch claim.
+
+Version: 2026.11.12.2
+Delta: Preserve outstanding local changes and synchronize cross-system Git work.
+
+## 2026-11-12 — Git reconciliation
+
+Preserve the existing dated skill archive; validate maintained content without running inference or indexing. Restore the byte-identical active skill mirror because its removal fails the packaged-agent surface validator.
+
+Git reconciliation is separate from paused optimization work. Preserve generated logs, local backups and concurrent work. Verification and delivery receipts are recorded by the fleet synchronization task TASK-1968. Verification: scoped local checks passed. Remaining: final commit, CI and verified remote delivery.
