@@ -1253,6 +1253,341 @@
       "kind": "source"
     },
     {
+      "path": "skills-archived/20261108T231500Z/auto-research/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/closed-loop/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/closed-loop/references/report-template.html",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/closed-loop/references/spec-template.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/comprehensive-analysis/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/content-factory/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/create-user-story/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/daily-brief/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/daily-journal/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/data-forms/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/data-forms/references/forms.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/editorial-illustrations/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/editorial-illustrations/assets/gallery.html",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/editorial-illustrations/references/design-system.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/editorial-illustrations/references/elements.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/editorial-illustrations/references/worked-examples.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/export-open-issues/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/generate-prd/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/generate-release-notes/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/knowledge-consolidation/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/knowledge-consolidation/references/templates.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/loop-engineering/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/manifest.json",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/meeting-transcript/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/memory-hygiene/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/museum-art/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/museum-art/references/_synthesis.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/museum-art/references/artic.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/museum-art/references/cleveland.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/museum-art/references/getty.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/museum-art/references/met.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/museum-art/references/nga.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/museum-art/references/rijksmuseum.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/museum-art/references/smithsonian.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/museum-art/references/smk.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/no-ai-slop/LICENSE",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/no-ai-slop/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/no-ai-slop/SOURCE.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/no-ai-slop/eval.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/product-ui-taste/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/product-ui-taste/references/block-skeletons.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/product-ui-taste/references/canonical-sources.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/product-ui-taste/references/install-commands.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/publish-to-confluence/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/retro/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/retro/references/retro-template.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/review-cockpit/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/review-cockpit/references/session-review-template.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/slop-gate/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/slop-gate/scripts/scan.py",
+      "component": "skills-archived",
+      "kind": "source"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/taste-skill/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/taste-skill/references/canonical-sources.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/taste-skill/references/design-systems-install.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/taste-skill/references/liquid-glass.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/taste-skill/references/motion-skeletons.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/taste-skill/references/pattern-vocabulary.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/team-brief/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/team-brief/references/agent-prompts.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/team-brief/references/brief-frontmatter.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/team-brief/references/publish-templates.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/ultragoal/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/update-cog/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/update-knowledge-base/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/url-dump/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/voice-baseline/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/voice-baseline/scripts/census.py",
+      "component": "skills-archived",
+      "kind": "source"
+    },
+    {
+      "path": "skills-archived/20261108T231500Z/weekly-checkin/SKILL.md",
+      "component": "skills-archived",
+      "kind": "reference"
+    },
+    {
       "path": "skills/auto-research/SKILL.md",
       "component": "skills",
       "kind": "reference"
